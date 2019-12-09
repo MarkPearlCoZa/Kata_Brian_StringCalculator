@@ -35,7 +35,7 @@ namespace TestProject1
         [TestCase("1,2", 3)]
         [TestCase("2,3", 5)]
         [TestCase("3,5,6", 14)]
-        public void NumbersSeperatedByCommasReturnTheAdditionOfTheNUmbers(string input, int expected)
+        public void NumbersSeperatedByCommasReturnTheAdditionOfTheNumbers(string input, int expected)
         {
             var sut = new StringCalculator();
             var result = sut.Calculate(input);
@@ -48,16 +48,10 @@ namespace TestProject1
     {
         public int Calculate(string input)
         {
-            
-            if (input == "")
+
+            if (input == "") // FROSD
             {
                 return 0;
-            }
-
-            if (input.Length == 1 )
-            {
-                return Convert.ToInt32(input);
-
             }
 
             string total = input;
