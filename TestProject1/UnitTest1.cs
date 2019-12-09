@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
@@ -57,18 +58,18 @@ namespace TestProject1
     {
         public int Calculate(string input)
         {
-
-            if (input == "") // FROSD
+            if (input == string.Empty)
             {
                 return 0;
             }
 
-            string total = input;
-            var sum = total.Split(new char[] {',', '\n'})
+            var sum = input.Split(delimiter, newline)
                 .Select(n => int.Parse(n))
                 .Sum();
             return sum;
         }
 
+        private static char newline => '\n';
+        private static char delimiter => ',';
     }
 }
