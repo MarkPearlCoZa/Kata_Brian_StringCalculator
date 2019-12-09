@@ -35,6 +35,7 @@ namespace TestProject1
         [TestCase("1,2", 3)]
         [TestCase("2,3", 5)]
         [TestCase("3,5,6", 14)]
+        [TestCase("1,2,3,4", 10)]
         public void NumbersSeperatedByCommasReturnTheAdditionOfTheNumbers(string input, int expected)
         {
             var sut = new StringCalculator();
