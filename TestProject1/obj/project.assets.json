@@ -5265,11 +5265,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/markpearl/Source/Basic_Problem/TestProject1/TestProject1/TestProject1.csproj",
+      "projectUniqueName": "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "/Users/markpearl/Source/Basic_Problem/TestProject1/TestProject1/TestProject1.csproj",
+      "projectPath": "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/TestProject1.csproj",
       "packagesPath": "/Users/markpearl/.nuget/packages/",
-      "outputPath": "/Users/markpearl/Source/Basic_Problem/TestProject1/TestProject1/obj/",
+      "outputPath": "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/markpearl/.config/NuGet/NuGet.Config"

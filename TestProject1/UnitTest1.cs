@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
@@ -53,15 +54,18 @@ namespace TestProject1
                 return 0;
             }
 
-            if (input.Length == 3)
+            if (input.Length == 1 )
             {
-                int x = Convert.ToInt32(input[0].ToString());
-                int y = Convert.ToInt32(input[2].ToString());
+                return Convert.ToInt32(input);
 
-                return x + y;
             }
-            return Convert.ToInt32(input);
 
+            string total = input;
+            int sum = total.Split(new char[] {','})
+                .Select(n => int.Parse(n))
+                .Sum();
+            return sum;
         }
+
     }
 }
