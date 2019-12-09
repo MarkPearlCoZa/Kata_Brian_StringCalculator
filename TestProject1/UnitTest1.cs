@@ -42,6 +42,14 @@ namespace TestProject1
             var result = sut.Calculate(input);
             Assert.That(result, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void InputAnyNumberSeperatedByNewLineBreakWIllStillGiveSumOfNumbers()
+        {
+            var sut = new StringCalculator();
+            var result = sut.Calculate("1,2\n7");
+            Assert.That(result, Is.EqualTo(10));
+        }
     }
 
 
@@ -56,7 +64,7 @@ namespace TestProject1
             }
 
             string total = input;
-            int sum = total.Split(new char[] {','})
+            int sum = total.Split(new char[] {',', '\n'})
                 .Select(n => int.Parse(n))
                 .Sum();
             return sum;
