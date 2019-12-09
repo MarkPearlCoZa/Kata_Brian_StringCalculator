@@ -64,7 +64,7 @@ namespace TestProject1
             }
 
             string total = input;
-            int sum = total.Split(new char[] {',', '\n'})
+            var sum = total.Split(new char[] {',', '\n'})
                 .Select(n => int.Parse(n))
                 .Sum();
             return sum;
