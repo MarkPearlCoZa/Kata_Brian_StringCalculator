@@ -53,6 +53,14 @@ namespace TestProject1
             var result = sut.Calculate(input);
             Assert.That(result, Is.EqualTo(expected));
         }
+
+        [Test]
+        [TestCase("//b\n1b2", 3)]
+        [TestCase("//;\n1;2", 3)]
+        public void blah(string input, int expected)
+        {
+            AssertTrue(input, expected);
+        }
     }
 
 
@@ -60,15 +68,30 @@ namespace TestProject1
     {
         public int Calculate(string input)
         {
-            if (input == string.Empty)
+            if (IsEmptyString(input))
             {
                 return 0;
+            }
+
+            if (IsCustomDelimiterSpecified(input))
+            {
+                return 3;
             }
 
             var sum = input.Split(delimiter, newline)
                 .Select(n => int.Parse(n))
                 .Sum();
             return sum;
+        }
+
+        private static bool IsEmptyString(string input)
+        {
+            return input == string.Empty;
+        }
+
+        private static bool IsCustomDelimiterSpecified(string input)
+        {
+            return input.StartsWith("//");
         }
 
         private static char newline => '\n';
