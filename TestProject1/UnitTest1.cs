@@ -26,9 +26,7 @@ namespace TestProject1
         [TestCase("3", 3)]
         public void AnyInputReturnsSameValueAsAnInteger(string input, int expected)
         {
-            var sut = new StringCalculator();
-            var result = sut.Calculate(input);
-            Assert.That(result, Is.EqualTo(expected));
+            AssertTrue(input, expected);
         }
 
         [Test]
@@ -39,14 +37,17 @@ namespace TestProject1
         [TestCase("1,2,3,4", 10)]
         public void NumbersSeperatedByCommasReturnTheAdditionOfTheNumbers(string input, int expected)
         {
-            var sut = new StringCalculator();
-            var result = sut.Calculate(input);
-            Assert.That(result, Is.EqualTo(expected));
+            AssertTrue(input, expected);
         }
 
         [TestCase("1,2\n7",10)]
         [TestCase("2\n3,5,6", 16)]
         public void LinebreaksAndCommasAreInterChangeableBetweenNumbers(string input, int expected)
+        {
+            AssertTrue(input, expected);
+        }
+
+        private static void AssertTrue(string input, int expected)
         {
             var sut = new StringCalculator();
             var result = sut.Calculate(input);
