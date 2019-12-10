@@ -44,12 +44,13 @@ namespace TestProject1
             Assert.That(result, Is.EqualTo(expected));
         }
 
-        [Test]
-        public void InputAnyNumberSeperatedByNewLineBreakWIllStillGiveSumOfNumbers()
+        [TestCase("1,2\n7",10)]
+        [TestCase("2\n3,5,6", 16)]
+        public void LinebreaksAndCommasAreInterChangeableBetweenNumbers(string input, int expected)
         {
             var sut = new StringCalculator();
-            var result = sut.Calculate("1,2\n7");
-            Assert.That(result, Is.EqualTo(10));
+            var result = sut.Calculate(input);
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 
