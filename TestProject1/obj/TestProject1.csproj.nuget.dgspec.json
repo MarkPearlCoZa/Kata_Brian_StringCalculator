@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/TestProject1.csproj": {}
+    "C:\\Users\\BrianD\\source\\repos\\Kata_Brian_StringCalculator\\TestProject1\\TestProject1.csproj": {}
   },
   "projects": {
-    "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/TestProject1.csproj": {
+    "C:\\Users\\BrianD\\source\\repos\\Kata_Brian_StringCalculator\\TestProject1\\TestProject1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/TestProject1.csproj",
+        "projectUniqueName": "C:\\Users\\BrianD\\source\\repos\\Kata_Brian_StringCalculator\\TestProject1\\TestProject1.csproj",
         "projectName": "TestProject1",
-        "projectPath": "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/TestProject1.csproj",
-        "packagesPath": "/Users/markpearl/.nuget/packages/",
-        "outputPath": "/Users/markpearl/Source/Kata_Brian_StringCalculator/TestProject1/obj/",
+        "projectPath": "C:\\Users\\BrianD\\source\\repos\\Kata_Brian_StringCalculator\\TestProject1\\TestProject1.csproj",
+        "packagesPath": "C:\\Users\\BrianD\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BrianD\\source\\repos\\Kata_Brian_StringCalculator\\TestProject1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/markpearl/.config/NuGet/NuGet.Config"
+          "C:\\Users\\BrianD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +60,13 @@
             "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

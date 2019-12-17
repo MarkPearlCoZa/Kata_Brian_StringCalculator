@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
-namespace TestProject1
+namespace ConsoleApp2
 {
     public class Tests
     {
@@ -40,7 +40,7 @@ namespace TestProject1
             AssertTrue(input, expected);
         }
 
-        [TestCase("1,2\n7",10)]
+        [TestCase("1,2\n7", 10)]
         [TestCase("2\n3,5,6", 16)]
         public void LinebreaksAndCommasAreInterChangeableBetweenNumbers(string input, int expected)
         {
@@ -57,15 +57,20 @@ namespace TestProject1
         [Test]
         [TestCase("//b\n1b2", 3)]
         [TestCase("//;\n1;2", 3)]
-        public void blah(string input, int expected)
+        public void CustomDelimiterReturnsTheAdditionOfTheNumbersBesideIt(string input, int expected)
         {
             AssertTrue(input, expected);
         }
+
+
+
+
     }
 
 
     public class StringCalculator
     {
+
         public int Calculate(string input)
         {
             if (IsEmptyString(input))
@@ -75,7 +80,13 @@ namespace TestProject1
 
             if (IsCustomDelimiterSpecified(input))
             {
-                return 3;
+                string newstring = input.Substring(input.IndexOf("\n") + 1);
+                var sum1 = newstring.Split(newstring[1])
+                    .Select(n => int.Parse(n))
+                    .Sum();
+                return sum1;
+
+
             }
 
             var sum = input.Split(delimiter, newline)
@@ -96,5 +107,6 @@ namespace TestProject1
 
         private static char newline => '\n';
         private static char delimiter => ',';
+
     }
 }
