@@ -73,11 +73,18 @@ namespace ConsoleApp2
         }
 
         [TestCase("1000,1001,2", 2)]
+        [TestCase("1000,1,2", 3)]
         public void NumbersGreaterOrEqualToThousandIgnored(string input, int expected)
         {
             AssertTrue(input, expected);
         }
 
+        [TestCase("//de\n1de2", 3)]
+        [TestCase("//anything\n1anything3", 4)]
+        public void CustomDelimiterSpecifiedReturnsAdditionOfNumbersBesideIt(string input, int expected)
+        {
+            AssertTrue(input, expected);
+        }
 
     }
 
@@ -95,8 +102,10 @@ namespace ConsoleApp2
 
             if (IsCustomDelimiterSpecified(input))
             {
+                int lengthOfDelimiter = input.IndexOf("\n") - 2;
+                String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
                 string newstring = input.Substring(input.IndexOf("\n") + 1);
-                var sum1 = newstring.Split(newstring[1])
+                var sum1 = newstring.Split(specifiedDelimiter)
                     .Select(n => int.Parse(n))
                     .Sum();
                 return sum1;
