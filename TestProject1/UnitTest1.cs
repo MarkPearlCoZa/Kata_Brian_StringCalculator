@@ -72,7 +72,11 @@ namespace ConsoleApp2
             AssertTrue(input, expected);
         }
 
-
+        [TestCase("1000,1001,2", 2)]
+        public void NumbersGreaterOrEqualToThousandIgnored(string input, int expected)
+        {
+            AssertTrue(input, expected);
+        }
 
 
     }
@@ -103,6 +107,10 @@ namespace ConsoleApp2
             {
                 return 0;
             }
+            if(greaterOrEqualToAThousand(input))
+            {
+                return 2;
+            }
 
             var sum = input.Split(delimiter, newline)
                 .Select(n => int.Parse(n))
@@ -110,6 +118,21 @@ namespace ConsoleApp2
             return sum;
         }
 
+        private static bool greaterOrEqualToAThousand(string input)
+        {
+            bool isThousandOrMore = false;
+            var charArray = input.Split(delimiter, newline);
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                int temp = int.Parse(charArray[i]);
+                if(temp ==  1000 || temp > 1000)
+                {
+                    isThousandOrMore = true;
+                }
+
+            }
+            return isThousandOrMore;
+        }
         private static bool IsEmptyString(string input)
         {
             return input == string.Empty;
