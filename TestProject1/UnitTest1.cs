@@ -109,7 +109,18 @@ namespace ConsoleApp2
             }
             if(greaterOrEqualToAThousand(input))
             {
-                return 2;
+                var charArray = input.Split(delimiter, newline);
+                var total = 0;
+                for (int i = 0; i < charArray.Length; i++)
+                {
+                    int temp = int.Parse(charArray[i]);
+                    if (temp < 1000 && temp != 1000)
+                    {
+                        total = total + temp;
+                    }
+
+                }
+                return total;
             }
 
             var sum = input.Split(delimiter, newline)
