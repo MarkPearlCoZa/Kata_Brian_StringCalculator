@@ -105,10 +105,8 @@ namespace ConsoleApp2
                 int lengthOfDelimiter = input.IndexOf("\n") - 2;
                 String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
                 string newstring = input.Substring(input.IndexOf("\n") + 1);
-                var sum1 = newstring.Split(specifiedDelimiter)
-                    .Select(n => int.Parse(n))
-                    .Sum();
-                return sum1;
+                var sum1 = newstring.Split(specifiedDelimiter);
+                return SumOfTextAsNumbers(sum1);
 
 
             }
@@ -132,12 +130,16 @@ namespace ConsoleApp2
                 return total;
             }
 
-            var sum = input.Split(delimiter, newline)
-                .Select(n => int.Parse(n))
-                .Sum();
-            return sum;
-        }
+            var sum = input.Split(delimiter, newline);
+            return SumOfTextAsNumbers(sum);
+                
 
+
+        }
+        private static int SumOfTextAsNumbers(string[] sum1)
+        {
+            return sum1.Select(n => int.Parse(n)).Sum();
+        }
         private static bool greaterOrEqualToAThousand(string input)
         {
             bool isThousandOrMore = false;
