@@ -62,6 +62,16 @@ namespace ConsoleApp2
             AssertTrue(input, expected);
         }
 
+        [Test]
+        [TestCase("-1,2,-3", 0)]
+        [TestCase("1,2,-3", 0)]
+        [TestCase("-1", 0)]
+        [TestCase("-1,-2,-3", 0)]
+        public void AddWithNegativeNumbersThrowsException(string input, int expected)
+        {
+            AssertTrue(input, expected);
+        }
+
 
 
 
@@ -70,13 +80,14 @@ namespace ConsoleApp2
 
     public class StringCalculator
     {
-
+       
         public int Calculate(string input)
         {
             if (IsEmptyString(input))
             {
                 return 0;
             }
+            
 
             if (IsCustomDelimiterSpecified(input))
             {
@@ -88,6 +99,10 @@ namespace ConsoleApp2
 
 
             }
+            if(isNegative(input))
+            {
+                return 0;
+            }
 
             var sum = input.Split(delimiter, newline)
                 .Select(n => int.Parse(n))
@@ -98,6 +113,21 @@ namespace ConsoleApp2
         private static bool IsEmptyString(string input)
         {
             return input == string.Empty;
+        }
+        private static bool isNegative(string input)
+        {
+            bool isNegativeInt = false;
+            var charArray = input.Split(delimiter, newline);
+            for(int i = 0; i < charArray.Length; i++)
+            {
+                int temp = int.Parse(charArray[i]);
+                if(temp < 0)
+                {
+                    isNegativeInt = true;
+                }
+                
+            }
+            return isNegativeInt;
         }
 
         private static bool IsCustomDelimiterSpecified(string input)
