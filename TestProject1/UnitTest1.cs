@@ -88,6 +88,7 @@ namespace ConsoleApp2
 
         [TestCase("//[*][%]\n1*2%3", 6)]
         [TestCase("//[$][^]\n3$2^5", 10)]
+        [TestCase("//[$#][^^]\n3$#2^^5", 10)]
         public void MultipleDelimitersReturnsAdditionOfNumbersBesideIt(string input, int expected)
         {
             AssertTrue(input, expected);
