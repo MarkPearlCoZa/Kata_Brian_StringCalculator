@@ -87,6 +87,7 @@ namespace ConsoleApp2
         }
 
         [TestCase("//[*][%]\n1*2%3", 6)]
+        [TestCase("//[$][^]\n3$2^5", 10)]
         public void MultipleDelimitersReturnsAdditionOfNumbersBesideIt(string input, int expected)
         {
             AssertTrue(input, expected);
@@ -104,7 +105,11 @@ namespace ConsoleApp2
             {
                 if (IsMultipleDelimitersSpecified(input))
                 {
-                    return 6;
+                    int start = input.IndexOf('[');
+                    int end = input.LastIndexOf(']') - 1;
+                    string result = input.Substring(start, end);
+                    var delimiters = result.Split(']', '[');
+                    return TwoDelimeterCalculator(input, delimiters);
                 }
 
                 return CustomDelimeterCalculator(input);
@@ -148,6 +153,15 @@ namespace ConsoleApp2
             String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
             string newstring = input.Substring(input.IndexOf("\n") + 1);
             var sum1 = newstring.Split(specifiedDelimiter);
+            var sumOfTextAsNumbers = SumOfTextAsNumbers(sum1);
+            return sumOfTextAsNumbers;
+        }
+        private static int TwoDelimeterCalculator(string input, string [] delimiters)
+        {
+            //int lengthOfDelimiter = input.IndexOf("\n") - 2;
+            //String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
+            string newstring = input.Substring(input.IndexOf("\n") + 1);
+            var sum1 = newstring.Split(delimiters, StringSplitOptions.None);
             var sumOfTextAsNumbers = SumOfTextAsNumbers(sum1);
             return sumOfTextAsNumbers;
         }
