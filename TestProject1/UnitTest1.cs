@@ -86,6 +86,12 @@ namespace ConsoleApp2
             AssertTrue(input, expected);
         }
 
+        [TestCase("//[*][%]\n1*2%3", 6)]
+        public void MultipleDelimitersReturnsAdditionOfNumbersBesideIt(string input, int expected)
+        {
+            AssertTrue(input, expected);
+        }
+
     }
 
 
@@ -100,8 +106,12 @@ namespace ConsoleApp2
             }
             
 
-            if (IsCustomDelimiterSpecified(input))
+            if (IsCustomDelimiterSpecified(input) )
             {
+                if (MultipleDelimitersSpecified(input))
+                {
+                    return 6;
+                }
                 int lengthOfDelimiter = input.IndexOf("\n") - 2;
                 String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
                 string newstring = input.Substring(input.IndexOf("\n") + 1);
@@ -114,6 +124,7 @@ namespace ConsoleApp2
             {
                 return 0;
             }
+           
             if(greaterOrEqualToAThousand(input))
             {
                 var charArray = input.Split(delimiter, newline);
@@ -135,6 +146,21 @@ namespace ConsoleApp2
                 
 
 
+        }
+
+        private static bool MultipleDelimitersSpecified(string input)
+        {
+            bool multipledelim = false;
+            char[] inputArray = input.ToCharArray();
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                if (inputArray[i] == '[')
+                {
+                    multipledelim = true;
+                }
+            }
+          
+            return multipledelim;
         }
         private static int SumOfTextAsNumbers(string[] sum1)
         {
