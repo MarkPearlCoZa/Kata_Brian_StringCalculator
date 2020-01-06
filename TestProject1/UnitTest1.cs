@@ -105,11 +105,7 @@ namespace ConsoleApp2
             {
                 if (IsMultipleDelimitersSpecified(input))
                 {
-                    int start = input.IndexOf('[');
-                    int end = input.LastIndexOf(']') - 1;
-                    string result = input.Substring(start, end);
-                    var delimiters = result.Split(']', '[');
-                    return TwoDelimeterCalculator(input, delimiters);
+                    return HasTwoDelimitersAndCalculate(input);
                 }
 
                 return CustomDelimeterCalculator(input);
@@ -123,6 +119,15 @@ namespace ConsoleApp2
             }
 
             return SimpleCalculator(input);
+        }
+
+        private static int HasTwoDelimitersAndCalculate(string input)
+        {
+            int start = input.IndexOf('[');
+            int end = input.LastIndexOf(']') - 1;
+            string result = input.Substring(start, end);
+            var delimiters = result.Split(']', '[');
+            return TwoDelimeterCalculator(input, delimiters);
         }
 
         private static int SimpleCalculator(string input)
