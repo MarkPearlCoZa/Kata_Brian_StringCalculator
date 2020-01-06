@@ -110,6 +110,7 @@ namespace ConsoleApp2
             {
                 if (MultipleDelimitersSpecified(input))
                 {
+                    
                     return 6;
                 }
                 int lengthOfDelimiter = input.IndexOf("\n") - 2;
