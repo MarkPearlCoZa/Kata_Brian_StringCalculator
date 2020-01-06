@@ -113,13 +113,7 @@ namespace ConsoleApp2
                     
                     return 6;
                 }
-                int lengthOfDelimiter = input.IndexOf("\n") - 2;
-                String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
-                string newstring = input.Substring(input.IndexOf("\n") + 1);
-                var sum1 = newstring.Split(specifiedDelimiter);
-                return SumOfTextAsNumbers(sum1);
-
-
+                return CalculateWithCustomDelimeter(input);
             }
             if(isNegative(input))
             {
@@ -128,25 +122,37 @@ namespace ConsoleApp2
            
             if(greaterOrEqualToAThousand(input))
             {
-                var charArray = input.Split(delimiter, newline);
-                var total = 0;
-                for (int i = 0; i < charArray.Length; i++)
-                {
-                    int temp = int.Parse(charArray[i]);
-                    if (temp < 1000 && temp != 1000)
-                    {
-                        total = total + temp;
-                    }
-
-                }
-                return total;
+                return SumValuesLessThanThousand(input);
             }
 
-            var sum = input.Split(delimiter, newline);
+            string[] sum = input.Split(delimiter, newline);
             return SumOfTextAsNumbers(sum);
-                
+        }
 
+        private static int SumValuesLessThanThousand(string input)
+        {
+            var charArray = input.Split(delimiter, newline);
+            var total = 0;
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                int temp = int.Parse(charArray[i]);
+                if (temp < 1000 && temp != 1000)
+                {
+                    total = total + temp;
+                }
+            }
 
+            return total;
+        }
+
+        private static int CalculateWithCustomDelimeter(string input)
+        {
+            int lengthOfDelimiter = input.IndexOf("\n") - 2;
+            String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
+            string newstring = input.Substring(input.IndexOf("\n") + 1);
+            var sum1 = newstring.Split(specifiedDelimiter);
+            var sumOfTextAsNumbers = SumOfTextAsNumbers(sum1);
+            return sumOfTextAsNumbers;
         }
 
         private static bool MultipleDelimitersSpecified(string input)
