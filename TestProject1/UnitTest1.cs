@@ -91,45 +91,42 @@ namespace ConsoleApp2
         {
             AssertTrue(input, expected);
         }
-
     }
 
 
     public class StringCalculator
     {
-       
         public int Calculate(string input)
         {
-            if (IsEmptyString(input))
-            {
-                return 0;
-            }
-            
+            if (IsEmptyString(input)) return 0;
 
-            if (IsCustomDelimiterSpecified(input) )
+            if (IsCustomDelimiterSpecified(input))
             {
-                if (MultipleDelimitersSpecified(input))
+                if (IsMultipleDelimitersSpecified(input))
                 {
-                    
                     return 6;
                 }
-                return CalculateWithCustomDelimeter(input);
-            }
-            if(isNegative(input))
-            {
-                return 0;
-            }
-           
-            if(greaterOrEqualToAThousand(input))
-            {
-                return SumValuesLessThanThousand(input);
+
+                return CustomDelimeterCalculator(input);
             }
 
+            if (IsNegativeSpecified(input)) return 0; //todo: change this to throw an exception
+
+            if (IsGreaterOrEqualToThousand(input))
+            {
+                return IgnoreValuesGreaterThanThousandCalculator(input);
+            }
+
+            return SimpleCalculator(input);
+        }
+
+        private static int SimpleCalculator(string input)
+        {
             string[] sum = input.Split(delimiter, newline);
             return SumOfTextAsNumbers(sum);
         }
 
-        private static int SumValuesLessThanThousand(string input)
+        private static int IgnoreValuesGreaterThanThousandCalculator(string input)
         {
             var charArray = input.Split(delimiter, newline);
             var total = 0;
@@ -145,7 +142,7 @@ namespace ConsoleApp2
             return total;
         }
 
-        private static int CalculateWithCustomDelimeter(string input)
+        private static int CustomDelimeterCalculator(string input)
         {
             int lengthOfDelimiter = input.IndexOf("\n") - 2;
             String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
@@ -155,7 +152,7 @@ namespace ConsoleApp2
             return sumOfTextAsNumbers;
         }
 
-        private static bool MultipleDelimitersSpecified(string input)
+        private static bool IsMultipleDelimitersSpecified(string input)
         {
             bool multipledelim = false;
             char[] inputArray = input.ToCharArray();
@@ -166,45 +163,49 @@ namespace ConsoleApp2
                     multipledelim = true;
                 }
             }
-          
+
             return multipledelim;
         }
+
         private static int SumOfTextAsNumbers(string[] sum1)
         {
             return sum1.Select(n => int.Parse(n)).Sum();
         }
-        private static bool greaterOrEqualToAThousand(string input)
+
+        private static bool IsGreaterOrEqualToThousand(string input)
         {
             bool isThousandOrMore = false;
             var charArray = input.Split(delimiter, newline);
             for (int i = 0; i < charArray.Length; i++)
             {
                 int temp = int.Parse(charArray[i]);
-                if(temp ==  1000 || temp > 1000)
+                if (temp == 1000 || temp > 1000)
                 {
                     isThousandOrMore = true;
                 }
-
             }
+
             return isThousandOrMore;
         }
+
         private static bool IsEmptyString(string input)
         {
             return input == string.Empty;
         }
-        private static bool isNegative(string input)
+
+        private static bool IsNegativeSpecified(string input)
         {
             bool isNegativeInt = false;
             var charArray = input.Split(delimiter, newline);
-            for(int i = 0; i < charArray.Length; i++)
+            for (int i = 0; i < charArray.Length; i++)
             {
                 int temp = int.Parse(charArray[i]);
-                if(temp < 0)
+                if (temp < 0)
                 {
                     isNegativeInt = true;
                 }
-                
             }
+
             return isNegativeInt;
         }
 
@@ -215,6 +216,5 @@ namespace ConsoleApp2
 
         private static char newline => '\n';
         private static char delimiter => ',';
-
     }
 }
