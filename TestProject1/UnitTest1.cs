@@ -153,8 +153,8 @@ namespace ConsoleApp2
                 }
 
             }
-            string[] arrayDelimeters = listOfDelimeters.ToArray();
-            return MultipleDelimeterCalculator(input, arrayDelimeters);
+            string[] arrayOfDelimeters = listOfDelimeters.ToArray();
+            return MultipleDelimeterCalculator(input, arrayOfDelimeters);
         }
 
         private static int SimpleCalculator(string input)
@@ -165,11 +165,11 @@ namespace ConsoleApp2
 
         private static int IgnoreValuesGreaterThanThousandCalculator(string input)
         {
-            var charArray = input.Split(delimiter, newline);
+            var numbersFromInput = input.Split(delimiter, newline);
             var total = 0;
-            for (int i = 0; i < charArray.Length; i++)
+            for (int i = 0; i < numbersFromInput.Length; i++)
             {
-                int temp = int.Parse(charArray[i]);
+                int temp = int.Parse(numbersFromInput[i]);
                 if (temp < 1000 && temp != 1000)
                 {
                     total = total + temp;
@@ -190,8 +190,6 @@ namespace ConsoleApp2
         }
         private static int MultipleDelimeterCalculator(string input, string [] delimiters)
         {
-            //int lengthOfDelimiter = input.IndexOf("\n") - 2;
-            //String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
             string newstring = input.Substring(input.IndexOf("\n") + 1);
             var sum1 = newstring.Split(delimiters, StringSplitOptions.None);
             var sumOfTextAsNumbers = SumOfTextAsNumbers(sum1);
@@ -200,17 +198,17 @@ namespace ConsoleApp2
 
         private static bool IsMultipleDelimitersSpecified(string input)
         {
-            bool multipledelim = false;
+            bool hasMultipleDelimeters = false;
             char[] inputArray = input.ToCharArray();
             for (int i = 0; i < inputArray.Length; i++)
             {
                 if (inputArray[i] == '[')
                 {
-                    multipledelim = true;
+                    hasMultipleDelimeters = true;
                 }
             }
 
-            return multipledelim;
+            return hasMultipleDelimeters;
         }
 
         private static int SumOfTextAsNumbers(string[] sum1)
@@ -221,10 +219,10 @@ namespace ConsoleApp2
         private static bool IsGreaterOrEqualToThousand(string input)
         {
             bool isThousandOrMore = false;
-            var charArray = input.Split(delimiter, newline);
-            for (int i = 0; i < charArray.Length; i++)
+            var numbersFromInputArray = input.Split(delimiter, newline);
+            for (int i = 0; i < numbersFromInputArray.Length; i++)
             {
-                int temp = int.Parse(charArray[i]);
+                int temp = int.Parse(numbersFromInputArray[i]);
                 if (temp == 1000 || temp > 1000)
                 {
                     isThousandOrMore = true;
