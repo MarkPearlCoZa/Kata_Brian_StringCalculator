@@ -107,7 +107,7 @@ namespace ConsoleApp2
             {
                 if (IsMultipleDelimitersSpecified(input))
                 {
-                    return HasTwoDelimitersAndCalculate(input);
+                    return HasMultipleDelimitersAndCalculate(input);
                 }
 
                 return CustomDelimeterCalculator(input);
@@ -123,11 +123,11 @@ namespace ConsoleApp2
             return SimpleCalculator(input);
         }
 
-        private static int HasTwoDelimitersAndCalculate(string input)
+        private static int HasMultipleDelimitersAndCalculate(string input)
         {
             bool isDelimeter = false;
-            string delimeter = "";
-            List<string> listDelimeters = new List<string>();
+            string delimeter = string.Empty;
+            List<string> listOfDelimeters = new List<string>();
             char[] charArray = input.ToCharArray();
             for (int i = 0; i < charArray.Length; i++)
             {
@@ -140,9 +140,8 @@ namespace ConsoleApp2
                 if (charArray[i] == ']')
                 {
                     isDelimeter = false;
-                    listDelimeters.Add(delimeter);
-                    Console.WriteLine(delimeter);
-                    delimeter = "";
+                    listOfDelimeters.Add(delimeter);
+                    delimeter = string.Empty;
 
                 }
 
@@ -154,8 +153,8 @@ namespace ConsoleApp2
                 }
 
             }
-            string[] arrayDelimeters = listDelimeters.ToArray();
-            return TwoDelimeterCalculator(input, arrayDelimeters);
+            string[] arrayDelimeters = listOfDelimeters.ToArray();
+            return MultipleDelimeterCalculator(input, arrayDelimeters);
         }
 
         private static int SimpleCalculator(string input)
@@ -189,7 +188,7 @@ namespace ConsoleApp2
             var sumOfTextAsNumbers = SumOfTextAsNumbers(sum1);
             return sumOfTextAsNumbers;
         }
-        private static int TwoDelimeterCalculator(string input, string [] delimiters)
+        private static int MultipleDelimeterCalculator(string input, string [] delimiters)
         {
             //int lengthOfDelimiter = input.IndexOf("\n") - 2;
             //String specifiedDelimiter = input.Substring(2, lengthOfDelimiter);
