@@ -124,11 +124,37 @@ namespace ConsoleApp2
 
         private static int HasTwoDelimitersAndCalculate(string input)
         {
-            int start = input.IndexOf('[');
-            int end = input.LastIndexOf(']') - 1;
-            string result = input.Substring(start, end);
-            var delimiters = result.Split(']', '[');
-            return TwoDelimeterCalculator(input, delimiters);
+            bool isDelimeter = false;
+            string delimeter = "";
+            List<string> listDelimeters = new List<string>();
+            char[] charArray = input.ToCharArray();
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if (charArray[i] == '[')
+                {
+                    isDelimeter = true;
+
+                }
+
+                if (charArray[i] == ']')
+                {
+                    isDelimeter = false;
+                    listDelimeters.Add(delimeter);
+                    Console.WriteLine(delimeter);
+                    delimeter = "";
+
+                }
+
+                if (isDelimeter == true && charArray[i] != '[')
+                {
+
+                    delimeter = delimeter + charArray[i].ToString();
+
+                }
+
+            }
+            string[] arrayDelimeters = listDelimeters.ToArray();
+            return TwoDelimeterCalculator(input, arrayDelimeters);
         }
 
         private static int SimpleCalculator(string input)
